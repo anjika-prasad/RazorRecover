@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
+import './razorpay.css';
 
 const cases = [
   { id:'RZ1023', customer:'Rahul Sharma', amount:4999, issue:'Bank / network error', probability:87, priority:'High', attempts:1, customerRate:91, recommendation:'Retry payment', status:'Ready', tone:'red' },
@@ -39,11 +40,11 @@ function App(){
   };
   const simulateFail=()=>{ setResult('stopped'); setLogs(l=>[...l,[time(),'RETRY_FAILED','Retry #2 failed — issuer unavailable'],[time(),'POLICY_STOP','Retry threshold reached; moved to manual recovery workflow'],[time(),'MERCHANT_NOTIFIED','Merchant notified with recommended payment link']]); };
   return <div className="app">
-    <aside><div className="brand"><div className="mark">R</div><div>Razor<span>Recover</span><small>REVENUE RECOVERY OS</small></div></div>
+    <aside><div className="brand"><div className="mark">↗</div><div>Razor<span>Recover</span><small>POWERED FOR RAZORPAY TEST MODE</small></div></div>
       <nav>{[['overview','Overview'],['audit','Recovery workspace'],['settings','Policy controls']].map(([id,label])=><button className={tab===id?'active':''} onClick={()=>setTab(id)} key={id}><i>{id==='overview'?'◈':id==='audit'?'⌘':'⚙'}</i>{label}</button>)}</nav>
       <div className="sidecard"><p>LIVE TEST MODE</p><strong>12</strong><span>tracked payment events</span><hr/><em>Razorpay test objects only</em></div><div className="profile"><div>AS</div><span>Acme Store<small>Merchant admin</small></span><b>⌄</b></div>
     </aside>
-    <main><header><div><p className="eyebrow">{tab==='overview'?'TODAY · 29 AUG 2026':'CONTROLLED RECOVERY WORKFLOW'}</p><h1>{tab==='overview'?'Your recovery command center':'Every action has a reason.'}</h1></div><div className="headerActions"><span className="mode"><b></b> Test mode connected</span><button className="outline" onClick={()=>setTab('settings')}>Policy limits</button></div></header>
+    <main><header><div><p className="eyebrow">{tab==='overview'?'TODAY · 29 AUG 2026':'CONTROLLED RECOVERY WORKFLOW'}</p><h1>{tab==='overview'?'Recover revenue before it slips away.':'Every payment action has a reason.'}</h1></div><div className="headerActions"><span className="mode"><b></b> Test mode connected</span><button className="outline" onClick={()=>setTab('settings')}>Policy limits</button></div></header>
     {tab==='overview' ? <>
       <section className="hero"><div><p>REVENUE AT RISK</p><h2>₹8.42L</h2><span><b>↑ 12.4%</b> from last week</span></div><div><p>RECOVERED REVENUE <small>BACKTEST</small></p><h2>₹5.71L</h2><span><b className="green">67.8%</b> recovery rate</span></div><div><p>LIVE TEST RECOVERED</p><h2>{money(liveRecovered)}</h2><span>Across 12 test transactions</span></div><div className="heroGraphic"><div className="ring"><b>68%</b><small>RECOVERY</small></div></div></section>
       <section className="split"><div className="panel cases"><div className="panelhead"><div><p className="eyebrow">PRIORITY QUEUE</p><h3>Recovery opportunities</h3></div><button className="link" onClick={()=>setTab('audit')}>Open workspace →</button></div><div className="filters">{['All','High','Medium','Review'].map(x=><button onClick={()=>setFilter(x)} className={filter===x?'selected':''} key={x}>{x}</button>)}</div>{visible.map(c=><button className="case" onClick={()=>choose(c)} key={c.id}><span className={'dot '+c.tone}></span><div><strong>{money(c.amount)} <small>{c.priority.toUpperCase()}</small></strong><p>{c.issue} · {c.customer}</p></div><div className="prob"><b>{c.probability}%</b><small>recovery likelihood</small></div><span className="arrow">→</span></button>)}</div>
