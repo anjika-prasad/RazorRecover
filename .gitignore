@@ -1,0 +1,20 @@
+# JavaScript
+node_modules/
+dist/
+.vite/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment secrets
+.env
+.env.*
+!.env.example
+
+# Editors and operating system files
+.DS_Store
+Thumbs.db
+.vscode/
