@@ -9,14 +9,16 @@ npm install
 npm run dev
 ```
 
-## Run the policy API
+## Run the product API
 
 ```powershell
 py -m pip install -r backend/requirements.txt
 py -m uvicorn backend.main:app --reload
 ```
 
-The dashboard is an interactive demo using simulated historical and test-mode figures. The FastAPI service demonstrates the policy gate separately; it does not make live payments.
+The dashboard now includes a **Create recovery case** workflow backed by a persistent SQLite ledger. Start the API before opening the dashboard so cases, policies and audit events survive page refreshes.
+
+To optionally create Razorpay **test-mode payment links**, copy `backend/.env.example` to `backend/.env`, add your test keys, and load the environment before starting Uvicorn. The API remains in safe local mode without those keys. A retry never attempts to re-charge a failed payment; it creates a fresh customer payment link.
 
 ## Demo path (3 minutes)
 
