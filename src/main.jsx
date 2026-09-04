@@ -658,22 +658,22 @@ function App() {
             <div className="metricsGrid">
               <div className="metricCard">
                 <p>PRECISION</p>
-                <h3>{evalData ? `${(evalData.precision * 100).toFixed(1)}%` : '84.2%'}</h3>
+                <h3>{evalData ? `${(evalData.precision * 100).toFixed(1)}%` : '91.6%'}</h3>
                 <span>Correct positive recovery predictions</span>
               </div>
               <div className="metricCard">
                 <p>RECALL</p>
-                <h3>{evalData ? `${(evalData.recall * 100).toFixed(1)}%` : '88.6%'}</h3>
+                <h3>{evalData ? `${(evalData.recall * 100).toFixed(1)}%` : '95.2%'}</h3>
                 <span>Total recoverable payments captured</span>
               </div>
               <div className="metricCard">
                 <p>ROC - AUC</p>
-                <h3>{evalData ? evalData.roc_auc : '0.910'}</h3>
+                <h3>{evalData ? evalData.roc_auc : '0.968'}</h3>
                 <span>Discriminative ability across thresholds</span>
               </div>
               <div className="metricCard">
                 <p>F1 SCORE</p>
-                <h3>{evalData ? `${(evalData.f1_score * 100).toFixed(1)}%` : '86.3%'}</h3>
+                <h3>{evalData ? `${(evalData.f1_score * 100).toFixed(1)}%` : '93.4%'}</h3>
                 <span>Harmonic mean of precision & recall</span>
               </div>
             </div>
@@ -692,13 +692,13 @@ function App() {
                   <tbody>
                     <tr>
                       <td><b>Actual Unrecoverable</b></td>
-                      <td className="good">{evalData?.confusion_matrix?.true_negative || 412} (TN)</td>
-                      <td className="bad">{evalData?.confusion_matrix?.false_positive || 78} (FP)</td>
+                      <td className="good">{evalData?.confusion_matrix?.true_negative || 338} (TN)</td>
+                      <td className="bad">{evalData?.confusion_matrix?.false_positive || 53} (FP)</td>
                     </tr>
                     <tr>
                       <td><b>Actual Recoverable</b></td>
-                      <td className="bad">{evalData?.confusion_matrix?.false_negative || 56} (FN)</td>
-                      <td className="good">{evalData?.confusion_matrix?.true_positive || 454} (TP)</td>
+                      <td className="bad">{evalData?.confusion_matrix?.false_negative || 29} (FN)</td>
+                      <td className="good">{evalData?.confusion_matrix?.true_positive || 580} (TP)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -707,10 +707,10 @@ function App() {
               <div className="panel">
                 <p className="eyebrow">FINANCIAL IMPACT SUMMARY</p>
                 <div className="finList">
-                  <p><span>Revenue at Risk (Test):</span> <b>{money(evalData?.financials?.revenue_at_risk_inr || 842000)}</b></p>
-                  <p><span>Recovered Revenue:</span> <b className="green">{money(evalData?.financials?.revenue_recovered_inr || 571000)}</b></p>
-                  <p><span>Recovery Rate:</span> <b className="green">{evalData?.financials?.recovery_rate_percent || 67.8}%</b></p>
-                  <p><span>False Positive Cost Avoided:</span> <b>{money(evalData?.financials?.false_positive_cost_avoided_inr || 34500)}</b></p>
+                  <p><span>Revenue at Risk (Test):</span> <b>{money(evalData?.financials?.revenue_at_risk_inr || 3609943)}</b></p>
+                  <p><span>Recovered Revenue:</span> <b className="green">{money(evalData?.financials?.revenue_recovered_inr || 2363735)}</b></p>
+                  <p><span>Recovery Rate:</span> <b className="green">{evalData?.financials?.recovery_rate_percent || 65.5}%</b></p>
+                  <p><span>False Positive Cost Avoided:</span> <b>{money(evalData?.financials?.false_positive_cost_avoided_inr || 152100)}</b></p>
                 </div>
               </div>
             </div>
