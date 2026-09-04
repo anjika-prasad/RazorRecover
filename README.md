@@ -199,14 +199,3 @@ CREATE TABLE IF NOT EXISTS audit (
     FOREIGN KEY (payment_id) REFERENCES payments(id)
 );
 ```
-
----
-
-## 🔒 Production Hardening & Compliance Roadmap
-
-Before deploying RazorRecover to live production environments with real payment traffic:
-
-- **Webhook Signature Validation**: Verify `X-Razorpay-Signature` HMAC SHA256 headers on incoming webhooks to prevent payload spoofing.
-- **Idempotency & Queueing**: Put retry execution behind a distributed task queue (e.g. Celery / Redis / AWS SQS) with provider idempotency keys to ensure at-most-once execution.
-- **DPDP Act & Consent Management**: Enforce explicit consent collection for customer outreach and automated retention/opt-out policy compliance.
-- **Distributed Ledger**: Replace SQLite with PostgreSQL for multi-region high availability and ACID transactional guarantees.
